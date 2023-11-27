@@ -24,4 +24,14 @@ return function (App $app) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
     });
+
+    $app->get('/nomes', function (Request $request, Response $response, $args) {
+        $nomes = ['Alice', 'Bob', 'Charlie', 'David', 'Eva'];
+    
+        $response->getBody()->write(json_encode($nomes));
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+    });
 };
+ 
